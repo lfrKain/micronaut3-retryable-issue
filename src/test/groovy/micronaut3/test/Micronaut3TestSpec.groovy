@@ -8,18 +8,13 @@ import spock.lang.Specification
 class Micronaut3TestSpec extends Specification {
 
     @Inject
-    TestHandlerWithFallback includeFallbackHandler
-
-    @Inject
     TestHandler handler
+    void 'fallback is called'() {
+        when:
+        String result = handler.handle()
 
-    void 'infinite loop when implementation and fallback is the same class'() {
-        expect:
-        includeFallbackHandler.handle()
-    }
-
-    void 'fallback is not called'() {
-        expect:
-        handler.handle()
+        then:
+        noExceptionThrown()
+        result == 'Fallback'
     }
 }
