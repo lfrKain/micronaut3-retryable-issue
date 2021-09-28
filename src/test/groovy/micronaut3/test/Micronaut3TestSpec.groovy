@@ -8,7 +8,8 @@ import spock.lang.Specification
 class Micronaut3TestSpec extends Specification {
 
     @Inject
-    TestHandler handler
+    ITestHandler handler
+
     void 'fallback is called'() {
         when:
         String result = handler.handle()
